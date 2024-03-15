@@ -9,7 +9,11 @@ public class PlayerController : MonoBehaviour
     Vector2 direction;
 
     [SerializeField]
-    float speed;
+    float speed = 3;
+
+    Rigidbody rb;
+    [SerializeField]
+    float jumpPowerSetup = 5;
 
 
 
@@ -17,6 +21,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         
     }
 
@@ -26,10 +31,15 @@ public class PlayerController : MonoBehaviour
         //Monitor horizontal keypresses and apply movement to player object
         hAxis = Input.GetAxis("Horizontal");
         direction = new Vector2(hAxis, 0);
-        speed = 5;
+
 
         transform.Translate(direction * Time.deltaTime * speed);
+
+        //If spacaebar is pressed then apply velocity to rb on y axis
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.velocity = new Vector3(0, 1) * jumpPowerSetup;
+        }   
         
-        print(hAxis);
     }
 }
