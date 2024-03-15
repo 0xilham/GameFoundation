@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+
+    float hAxis;
+    Vector2 direction;
+
+    [SerializeField]
+    float speed;
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,9 +24,9 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //Monitor horizontal keypresses and apply movement to player object
-        float hAxis = Input.GetAxis("Horizontal");
-        Vector2 direction = new Vector2(hAxis, 0);
-        float speed = 5;
+        hAxis = Input.GetAxis("Horizontal");
+        direction = new Vector2(hAxis, 0);
+        speed = 5;
 
         transform.Translate(direction * Time.deltaTime * speed);
         
