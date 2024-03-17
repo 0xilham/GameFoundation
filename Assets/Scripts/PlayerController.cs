@@ -10,10 +10,12 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     float speed = 3;
+    [SerializeField]
+    float jumpPower = 5;
 
     Rigidbody rb;
     [SerializeField]
-    float jumpPowerSetup = 5;
+    bool onGround = false;
 
 
 
@@ -36,10 +38,27 @@ public class PlayerController : MonoBehaviour
         transform.Translate(direction * Time.deltaTime * speed);
 
         //If spacaebar is pressed then apply velocity to rb on y axis
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && onGround == true)
         {
-            rb.velocity = new Vector3(0, 1) * jumpPowerSetup;
+            rb.velocity = new Vector2(0, 1) * jumpPower;
         }   
-        
+    }
+
+
+    private void OnTriggerEnter(Collider col)
+    {
+        //if trigger enter object with tag "ground" then onGround is true
+        if (col.tag == "ground")
+        {
+            onGround = true;
+        }
+    }
+    private void OnTriggerExit(Collider col)
+    {
+        //if trigger exit object with tag "ground" then onGround is false
+        if (col.tag == "ground")
+        {
+            onGround = false;
+        }
     }
 }
