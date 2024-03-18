@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class FallTrigger : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         //When player tag enters trigger restart scene
         if (other.tag == "Player")
