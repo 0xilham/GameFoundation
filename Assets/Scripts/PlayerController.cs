@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float jumpPower = 5;
 
-    Rigidbody rb;
+    Rigidbody2D rb;
     [SerializeField]
     bool onGround = false;
 
@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody2D>();
         
     }
 
@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter(Collider col)
+    private void OnTriggerEnter2D(Collider2D col)
     {
         //if trigger enter object with tag "ground" then onGround is true
         if (col.tag == "ground")
@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
             onGround = true;
         }
     }
-    private void OnTriggerExit(Collider col)
+    private void OnTriggerExit2D(Collider2D col)
     {
         //if trigger exit object with tag "ground" then onGround is false
         if (col.tag == "ground")
