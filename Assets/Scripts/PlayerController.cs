@@ -30,18 +30,26 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Movement();
+        Jump();
+    }
+
+    void Movement()
+    {
         //Monitor horizontal keypresses and apply movement to player object
         hAxis = Input.GetAxis("Horizontal");
         direction = new Vector2(hAxis, 0);
 
-
         transform.Translate(direction * Time.deltaTime * speed);
+    }
 
+    void Jump()
+    {
         //If spacaebar is pressed then apply velocity to rb on y axis
         if (Input.GetKeyDown(KeyCode.Space) && onGround == true)
         {
             rb.velocity = new Vector2(0, 1) * jumpPower;
-        }   
+        }
     }
 
 
