@@ -17,14 +17,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     bool onGround = false;
 
-
+    Animator animator;
 
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
     {
         Movement();
         Jump();
+        Facing();
+        Animations();
     }
 
     void Movement()
@@ -50,6 +52,28 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector2(0, 1) * jumpPower;
         }
+    }
+
+    void Facing()
+    {
+        //If player is moving left then flip sprite to face left scale x = -1
+        if (hAxis < 0)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+
+        //If player is moving right then flip sprite to face right scale = 1
+        if (hAxis > 0)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+    }
+
+    void Animations()
+    {
+        //If player is moving then play running animation
+        animator.SetFloat("Moving", Mathf.Abs(hAxis));
+        animator.SetBool("OnGround", onGround);
     }
 
 
