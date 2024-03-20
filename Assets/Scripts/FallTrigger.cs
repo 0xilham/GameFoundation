@@ -10,8 +10,7 @@ public class FallTrigger : MonoBehaviour
         //When player tag enters trigger restart scene
         if (other.tag == "Player")
         {
-            SceneManager.LoadScene("Level1");
-            print("Player has fallen");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }

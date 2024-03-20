@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -56,7 +57,7 @@ public class PlayerController : MonoBehaviour
 
     void Facing()
     {
-        //If player is moving left then flip sprite to face left scale x = -1
+        //If player is moving left then flip sprite to face left scale = -1
         if (hAxis < 0)
         {
             transform.localScale = new Vector3(-1, 1, 1);
@@ -83,6 +84,11 @@ public class PlayerController : MonoBehaviour
         if (col.tag == "ground")
         {
             onGround = true;
+        }
+        
+        if (col.tag == "enemy")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
     private void OnTriggerExit2D(Collider2D col)
