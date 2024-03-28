@@ -18,23 +18,21 @@ public class Platform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //If player y is below a platform y turn off collider else turn off collider
+        // Jika pemain berada di bawah platform, matikan collider
         if (Player.transform.position.y < transform.position.y)
         {
             colliders.enabled = false;
         }
-
-        //If player y is above a platform y turn on collider else turn on collider
-        if (Player.transform.position.y > transform.position.y)
+        // Jika pemain berada di atas platform, hidupkan collider
+        else if (Player.transform.position.y > transform.position.y)
         {
             colliders.enabled = true;
         }
 
-        //If user pushes down then turn off collider
-        if (Input.GetAxis("Vertical") < 0)
+        // Jika pemain berada di samping kiri atau kanan platform, matikan collider
+        if (Player.transform.position.x < transform.position.x || Player.transform.position.x > transform.position.x)
         {
             colliders.enabled = false;
         }
-        
     }
 }
